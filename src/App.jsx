@@ -37,7 +37,7 @@ const handleDelete = (id) => {
 
 
 const tareasFiltradas = useMemo(() => {
-    console.log("Calculando filtro..."); // Vas a ver que esto solo sale si cambias algo
+
     return listaTareas.filter(t => 
         t.title.toLowerCase().includes(busqueda.toLowerCase())
     );
