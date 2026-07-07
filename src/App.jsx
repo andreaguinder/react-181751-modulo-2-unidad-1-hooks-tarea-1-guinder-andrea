@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "./main.scss";
 import { ContenedorGeneral } from "./components/ContenedorGeneral/ContenedorGeneral";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Form } from "./components/Form/Form"
 import { ContenedorTareas } from "./components/ContenedorTareas/ContenedorTareas";
 import { Footer } from "./components/Footer";
+import { tareas } from "./data/mock"
 
 function App() {
 
@@ -19,9 +20,14 @@ function App() {
 
 
   const agregarTarea = (dataTareas) => {
-    console.log("Tarea recibida", dataTareas)
-    setListaTareas([{ id: listaTareas.length + 1, ...dataTareas }, ...listaTareas])
-  }
+
+    const nuevaTarea = { 
+        id: Date.now(), 
+        ...dataTareas 
+    };
+    
+    setListaTareas([nuevaTarea, ...listaTareas]);
+}
 
   const handleToggle = (id) => {
     setListaTareas(prev => prev.map(t =>
@@ -35,9 +41,14 @@ const handleDelete = (id) => {
 
   const [busqueda, setBusqueda] = useState("")
 
-  const tareasFiltradas = listaTareas.filter(t => 
-    t.title.toLowerCase().includes(busqueda.toLowerCase())
-);
+
+
+const tareasFiltradas = useMemo(() => {
+    console.log("Calculando filtro..."); // Vas a ver que esto solo sale si cambias algo
+    return listaTareas.filter(t => 
+        t.title.toLowerCase().includes(busqueda.toLowerCase())
+    );
+}, [listaTareas, busqueda]);
 
 console.log("Estado búsqueda:", busqueda);
 console.log("Tareas filtradas:", tareasFiltradas);
