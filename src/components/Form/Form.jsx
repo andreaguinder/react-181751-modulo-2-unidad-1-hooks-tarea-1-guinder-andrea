@@ -10,6 +10,10 @@ const Form = (task) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     task.agregarTarea({ title: title, descripcion: descripcion, status: estaCompletada })
+
+    setTitle("");
+    setDescripcion("");
+    setEstaCompletada(false);
   }
 
   const handleTitle = (e) => {

@@ -1,17 +1,18 @@
-@use "../../styles/variables" as *;
+@use "../../styles/variables"as *;
 
 .containerGeneral {
     @include flexCenter(column);
     gap: 16px;
-    max-width: 98%;
-    margin: 50px auto;
+    max-width: 92%;
+    margin: 20px auto;
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width:1024px) {
 
     .containerGeneral {
-    gap: 32px;
-    max-width: 80%;
-}
+        gap: 32px;
+        max-width: 1200px;
+        margin: 50px auto;
+    }
 
 }

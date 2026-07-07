@@ -19,7 +19,7 @@ const Navbar = ({ onSearch }) => {
     return (
 
         <div className={styles.navbar}>
-            <h1>Tareas</h1>
+            <h1>Lista de tareas</h1>
             <input type="text"
                 placeholder="Busca tu tarea..."
                 ref={inputRef}

@@ -4,20 +4,13 @@ import { ContenedorGeneral } from "./components/ContenedorGeneral/ContenedorGene
 import { Navbar } from "./components/Navbar/Navbar";
 import { Form } from "./components/Form/Form"
 import { ContenedorTareas } from "./components/ContenedorTareas/ContenedorTareas";
-import { Footer } from "./components/Footer";
+import { Footer } from "./components/Footer/Footer";
 import { tareas } from "./data/mock"
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 function App() {
 
-  const [listaTareas, setListaTareas] = useState(() => {
-    const tareasGuardadas = localStorage.getItem("misTareas");
-    return tareasGuardadas ? JSON.parse(tareasGuardadas) : tareas;
-  });
-
-  useEffect(() => {
-    localStorage.setItem("misTareas", JSON.stringify(listaTareas));
-  }, [listaTareas]);
-
+  const [listaTareas, setListaTareas] = useLocalStorage("misTareas", tareas);
 
   const agregarTarea = (dataTareas) => {
 
@@ -50,8 +43,7 @@ const tareasFiltradas = useMemo(() => {
     );
 }, [listaTareas, busqueda]);
 
-console.log("Estado búsqueda:", busqueda);
-console.log("Tareas filtradas:", tareasFiltradas);
+
   return (
     <>
 

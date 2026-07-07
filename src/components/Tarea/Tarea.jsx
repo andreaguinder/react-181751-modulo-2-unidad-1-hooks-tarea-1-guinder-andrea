@@ -5,7 +5,7 @@ const Tarea = ({ task, onToggle, onClick }) => {
     const { id, title, descripcion, status } = task;
 
     return (
-        <div className={styles.tarea}>
+        <div className={`${styles.tarea} ${status ? styles.completada : ""}`}>
             <h3>{title}</h3>
             <div className={styles.descripcionYestado}>
                 <p>{descripcion}</p>
