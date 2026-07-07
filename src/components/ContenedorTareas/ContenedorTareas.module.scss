@@ -1,0 +1,22 @@
+@use "../../styles/variables" as *;
+
+.containerListaDeTareas {
+    @include flexCenter(column);
+    gap: 16px;
+    width: 100%;
+    margin: 16px auto;
+
+    ul, li {
+        width: 100%;
+        list-style-type: none;
+    }
+}
+
+@media screen and (min-width:768px) {
+
+    .containerListaDeTareas {
+    gap: 32px;
+    margin: 32px auto;
+}
+
+}

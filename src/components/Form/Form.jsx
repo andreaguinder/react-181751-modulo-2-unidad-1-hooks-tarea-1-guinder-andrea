@@ -9,7 +9,7 @@ const Form = (task) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    task.agregarTarea({ title: title, descripcion: descripcion, estaCompletada: estaCompletada })
+    task.agregarTarea({ title: title, descripcion: descripcion, status: estaCompletada })
   }
 
   const handleTitle = (e) => {
@@ -24,34 +24,38 @@ const Form = (task) => {
     setEstaCompletada(e.target.value === "true")
   }
 
+
   return (
     <section className={styles.containerForm}>
       <h2>Agregar tarea nueva:</h2>
       <form onSubmit={handleSubmit}>
 
-        <label htmlfor="title">Nombre de la tarea:</label>
-        <input type="text"
-          placeholder="Escribe el nombre de la tarea"
-          onChange={(e) => handleTitle(e)}
-          value={title} />
-
-        <label htmlfor="title">Nombre de la tarea:</label>
-        <textarea
-          name="descripcion"
-          id=""
-          placeholder="Describe la tarea"
-          defaultValue={""}
-          onChange={(e) => handleDescripcion(e)}
-          value={descripcion}
-        />
-
-        <div>
+<div className={styles.general}>
+        <div className={styles.info}>
+          <div>
+            <label htmlFor="title">Nombre de la tarea:</label>
+            <input type="text"
+              placeholder="Escribe el nombre de la tarea"
+              onChange={(e) => handleTitle(e)}
+              value={title} />
+          </div>
+          <div>
+            <label htmlFor="title">Descripción de la tarea:</label>
+            <textarea
+              name="descripcion"
+              id=""
+              placeholder="Describe la tarea"
+              onChange={(e) => handleDescripcion(e)}
+              value={descripcion}
+            />
+          </div>
+        </div>
+        <div className={styles.completada}>
           <p>¿Está completada?</p>
           <label>
             <input type="radio"
               name="opcion"
               defaultValue="si"
-              defaultChecked=""
               onChange={(e) => handleEstaCompletada(e)}
               checked={estaCompletada === true} />
             Si
@@ -65,8 +69,10 @@ const Form = (task) => {
             No
           </label>
         </div>
-
-        <button type="button">Agregar tarea</button>
+</div>
+<div>
+        <button type="submit">Agregar tarea</button>
+        </div>
       </form>
     </section>
   )

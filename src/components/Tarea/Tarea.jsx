@@ -1,24 +1,26 @@
-import { useState } from "react";
+import styles from './Tarea.module.scss';
 
-const Tarea = (task) => {
+const Tarea = ({ task, onToggle, onClick }) => {
 
-    const db = JSON.parse(localStorage.getItem("completada"))
-    const [tareaCompletada, setTareaCompletada] = useState(db)
-    const { id, title, descripcion } = task
-
-    const addTareaCompletada = () => {
-        setTareaCompletada(tareaCompletada)
-        localStorage.setItem("completada", JSON.stringify(tareaCompletada));
-    }
-
-
+    const { id, title, descripcion, status } = task;
 
     return (
-        <div>
-            <p>{task.id} | {task.title}</p>
-            <p>{task.descripcion}</p>
-            <p>{task.completada}</p>
-            <button onClick={addTareaCompletada}>Tarea Completada{tareaCompletada}</button>
+        <div className={styles.tarea}>
+            <h3>{title}</h3>
+            <div className={styles.descripcionYestado}>
+                <p>{descripcion}</p>
+                <p>Estado: {status ? "Completada" : "Pendiente"}</p>
+            </div>
+
+<div className={styles.containerBotones}>
+            <button onClick={onToggle} className={styles.buttonTarea}>
+                Marcar como {status ? "Pendiente" : "Completada"}
+            </button>
+
+            <button onClick={onClick} className={styles.buttonTarea}>
+                Eliminar tarea
+            </button>
+            </div>
         </div>
     )
 

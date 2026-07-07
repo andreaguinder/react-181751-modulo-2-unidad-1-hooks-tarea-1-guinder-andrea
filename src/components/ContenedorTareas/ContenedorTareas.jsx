@@ -1,26 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { tareas } from "../../data/mock"
 import { Tarea } from "../Tarea/Tarea"
+import styles from './ContenedorTareas.module.scss';
 
-const ContenedorTareas = () => {
-
+const ContenedorTareas = ({ listaTareas, handleToggle, handleDelete }) => {
 
     return (
         <>
-        <h2>Lista de Tareas</h2>
 
-        <ul>
+        <ul className={styles.containerListaDeTareas}>
 
-        {tareas.map((tarea) => (
+        {listaTareas.map((tarea) => (
+                <li key={tarea.id}>
 
-          <li key={tarea.id}>
-            <h3>{tarea.title}</h3>
-            <p>{tarea.description}</p>
-            <span>Estado: {tarea.status ? "Completada" : "Pendiente"}</span>
-
-            <Tarea task={tarea} />
-          </li>
-        ))}
+                    <Tarea task={tarea} onToggle={() => handleToggle(tarea.id)} onClick={() => handleDelete(tarea.id)} />
+                </li>
+            ))}
       </ul>
       </>
     )
